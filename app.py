@@ -9,7 +9,7 @@ load_dotenv()
 
 client = OpenAI(
     api_key=os.getenv('DEEPSEEK_API_KEY'),
-    base_url="https://api.deepseek.com",
+    base_url="https://openrouter.ai/api/v1",
 )
 
 
@@ -42,12 +42,12 @@ def get_book(query):
     print(url)
     resp = requests.get(url)
     return resp.json()['docs']
-
+oper
 
 def send_messages(message, history):
     messages = history + [{'role': 'user', 'metadata': None, 'content': message, 'options': None}]
     response = client.chat.completions.create(
-        model="deepseek-chat",
+        model="deepseek/deepseek-chat:free",
         messages=messages,
         tools=tools
     )
