@@ -42,7 +42,7 @@ def get_book(query):
     print(url)
     resp = requests.get(url)
     return resp.json()['docs']
-oper
+
 
 def send_messages(message, history):
     messages = history + [{'role': 'user', 'metadata': None, 'content': message, 'options': None}]
