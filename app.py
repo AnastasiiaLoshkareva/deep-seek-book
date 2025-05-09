@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 client = OpenAI(
-    api_key=os.getenv('DEEPSEEK_API_KEY'),
-    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv('GEMINI_API_KEY'),
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
 
@@ -47,7 +47,7 @@ def get_book(query):
 def send_messages(message, history):
     messages = history + [{'role': 'user', 'metadata': None, 'content': message, 'options': None}]
     response = client.chat.completions.create(
-        model="deepseek/deepseek-chat:free",
+        model="gemini-2.0-flash",
         messages=messages,
         tools=tools
     )
@@ -64,7 +64,7 @@ def send_messages(message, history):
         })
 
         response = client.chat.completions.create(
-            model="deepseek-chat",
+            model="gemini-2.0-flash",
             messages=messages,
             tools=tools,
         )
